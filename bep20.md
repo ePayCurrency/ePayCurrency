@@ -344,13 +344,13 @@ contract BEP20Token is Context, IBEP20, Ownable {
   mapping (address => mapping (address => uint256)) private _allowances;
 
   uint256 private _totalSupply;
-  uint8 private _decimals;
-  string private _symbol;
-  string private _name;
+  uint8 public _decimals;
+  string public _symbol;
+  string public _name;
 
   constructor() public {
-    _name = {{}};
-    _symbol = {{}};
+    _name = "ePayCurrency";
+    _symbol = "ePAY";
     _decimals = 8;
     _totalSupply = 2800000000000000000000;
     _balances[msg.sender] = _totalSupply;
@@ -496,6 +496,14 @@ contract BEP20Token is Context, IBEP20, Ownable {
    */
   function mint(uint256 amount) public onlyOwner returns (bool) {
     _mint(_msgSender(), amount);
+    return true;
+  }
+
+  /**
+   * @dev Burn `amount` tokens and decreasing the total supply.
+   */
+  function burn(uint256 amount) public returns (bool) {
+    _burn(_msgSender(), amount);
     return true;
   }
 
