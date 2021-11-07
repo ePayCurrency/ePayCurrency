@@ -336,7 +336,7 @@ contract Ownable is Context {
   }
 }
 
-contract BEP20Token is Context, IBEP20, Ownable {
+contract ePAY is Context, IBEP20, Ownable {
   using SafeMath for uint256;
 
   mapping (address => uint256) private _balances;
@@ -349,10 +349,10 @@ contract BEP20Token is Context, IBEP20, Ownable {
   string public _name;
 
   constructor() public {
-    _name = "ePayCurrency";
-    _symbol = "ePAY";
-    _decimals = 8;
-    _totalSupply = 2800000000000000000000;
+    _name = "Name";
+    _symbol = "ID";
+    _decimals = "";
+    _totalSupply = ******;
     _balances[msg.sender] = _totalSupply;
 
     emit Transfer(address(0), msg.sender, _totalSupply);
@@ -392,7 +392,6 @@ contract BEP20Token is Context, IBEP20, Ownable {
   function totalSupply() external view returns (uint256) {
     return _totalSupply;
   }
-
   /**
    * @dev See {BEP20-balanceOf}.
    */
@@ -485,7 +484,6 @@ contract BEP20Token is Context, IBEP20, Ownable {
     _approve(_msgSender(), spender, _allowances[_msgSender()][spender].sub(subtractedValue, "BEP20: decreased allowance below zero"));
     return true;
   }
-
   /**
    * @dev Creates `amount` tokens and assigns them to `msg.sender`, increasing
    * the total supply.
@@ -597,4 +595,5 @@ contract BEP20Token is Context, IBEP20, Ownable {
     _burn(account, amount);
     _approve(account, _msgSender(), _allowances[account][_msgSender()].sub(amount, "BEP20: burn amount exceeds allowance"));
   }
+        
 }
